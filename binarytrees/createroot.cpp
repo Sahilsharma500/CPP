@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 class node{
     public:
@@ -28,9 +29,39 @@ node* createNode(node* root){
     cout<<"enter the value to the right of node : "<<endl;
     root->right = createNode(root->right);
     return root;
+};
+void getLevelNode(node* root){
+    queue<node* > main;
+    main.push(root);
+    main.push(NULL);
+
+    while(!(main.empty())){
+        node* temp = main.front();
+        main.pop();
+
+        if(temp==NULL){
+            cout<<endl;
+            if(!(main.empty())){
+                main.push(NULL);
+            }
+        }
+        else{
+            cout<<temp<<endl;
+
+            if(temp->left){
+                main.push(temp->left);
+            }
+            if(temp->right){
+                main.push(temp->right);
+            }
+        }
+    }
 }
 
 int main(){
     node *root = NULL;
     root = createNode(root);
+
+    //print tree with levels
+    getLevelNode(root);
 }
