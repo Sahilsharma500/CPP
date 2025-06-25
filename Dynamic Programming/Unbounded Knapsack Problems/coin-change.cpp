@@ -36,7 +36,6 @@ public:
         }
 
         int notTake = solveMemo(coins, ind - 1, amount, dp); // Skip coin
-
         return dp[ind][amount] = min(take, notTake);
     }
 
